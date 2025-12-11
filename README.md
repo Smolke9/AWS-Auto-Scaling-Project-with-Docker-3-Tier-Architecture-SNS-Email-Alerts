@@ -82,12 +82,16 @@ echo "Setup completed." > /home/ubuntu/status.txt
 
 1.  AWS → EC2 → Launch Templates → **Create**
 2.  Name: `docker-autoscaling-template`
-3.  AMI: Ubuntu 22.04\
-4.  Instance Type: t2.micro\
-5.  Key pair\
-6.  Security Group: `asg-sg`\
-7.  Advanced Details → **User Data** → paste `autoscaling.sh`\
-8.  Create
+3.  ![screenshot](./screenshot/1.png)
+4.  AMI: Ubuntu 22.04\
+5.  ![screenshot](./screenshot/2.png)
+6.  Instance Type: t2.micro\
+7.  Key pair\
+8.  Security Group: `asg-sg`\
+9.  Advanced Details → **User Data** → paste `autoscaling.sh`\
+10.  ![screenshot](./screenshot/3.png)
+11.  Create
+12.  ![screenshot](./screenshot/4.png)
 
 ------------------------------------------------------------------------
 
@@ -95,15 +99,17 @@ echo "Setup completed." > /home/ubuntu/status.txt
 
 1.  AWS → Auto Scaling → **Create ASG**\
 2.  Name: `docker-app-asg`\
-3.  Select Launch Template\
-4.  Select VPC + 2 subnets
+3.  ![screenshot](./screenshot/5.png)
+4.  Select Launch Template\
+5.  Select VPC + 2 subnets
+6.  ![screenshot](./screenshot/6.png)
 
 ### Configure Capacity:
 
 -   Desired: **1**\
 -   Minimum: **1**\
 -   Maximum: **3**
-
+![screenshot](./screenshot/7.png)
 ### Scaling Policy:
 
 -   Type: **Target Tracking**
@@ -116,19 +122,24 @@ echo "Setup completed." > /home/ubuntu/status.txt
 -   Events:\
     ✔ Instance Launch\
     ✔ Instance Terminate
-
+![screenshot](./screenshot/8.png)
+![screenshot](./screenshot/9.png)
 ------------------------------------------------------------------------
 
 ## 📌 7. Test Auto Scaling
 
 ### View instance:
-
+![screenshot](./screenshot/10.png)
 AWS → EC2 → **Instances**
 
 ### Open Public IP:
-
+![screenshot](./screenshot/16.png)
 NGINX + PHP page should appear.
-
+![screenshot](./screenshot/15.png)
+![screenshot](./screenshot/17.png)
+![screenshot](./screenshot/18.png)
+## 📌 SNS Email Notifications
+![screenshot](./screenshot/11.png)
 ### Stress CPU to trigger scaling:
 
 ``` bash
